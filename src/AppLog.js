@@ -8,12 +8,12 @@ function AppLog() {
         const fetchData = async () => {
             try {
                 const responseUsers = await fetch('https://jsonplaceholder.typicode.com/users')
-                console.log(responseUsers)
                 const usersData = await responseUsers.json()
                 console.log(usersData)
 
                 const responseTodos = await fetch('https://jsonplaceholder.typicode.com/todos')
                 const todosData = await responseTodos.json()
+                console.log(todosData)
 
                 setUsers(usersData)
                 setTodos(todosData)
@@ -28,7 +28,7 @@ function AppLog() {
     const productivityScore = (userId) => {
         const userTodos = todos.filter(todo => todo.userId === userId)
         const completedTodos = userTodos.filter(todo => todo.completed)
-        const result = ((completedTodos.length * userTodos.length) / 100).toFixed(2)
+        const result = ((completedTodos.length / userTodos.length) * 100).toFixed(2)
         console.log('partial result: ', (completedTodos.length / userTodos.length))
         console.log(result)
         return result
